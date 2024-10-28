@@ -1,6 +1,6 @@
 # Clothes-Virtual-Try-On
 
 ## Resources:
-https://www.youtube.com/watch?v=C94pTaKoLbU
+Example Guide: https://www.youtube.com/watch?v=C94pTaKoLbU
 
-https://github.com/levihsu/OOTDiffusion
+Possible model for virtual try-on: https://github.com/levihsu/OOTDiffusion
