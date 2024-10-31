@@ -15,4 +15,6 @@ such as muscles, watches or tattoos, etc. The reason is that the relevant body
 area is masked and repainted by the diffusion model. Thus more practical pre-
 and post-processing methods are required for addressing such problems."
 
-3. Simple guide to build a Full-stack Generative AI App: https://xiaolishen.medium.com/a-fullstack-text-to-image-generative-ai-app-you-can-build-in-an-afternoon-31990657344b
+3. Lightweight version possible model to deploy ( <= 8GB VRAM required): https://github.com/Zheng-Chong/CatVTON
+
+4. Simple guide to build a Full-stack Generative AI App: https://xiaolishen.medium.com/a-fullstack-text-to-image-generative-ai-app-you-can-build-in-an-afternoon-31990657344b
