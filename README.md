@@ -1,6 +1,8 @@
 # Clothes-Virtual-Try-On
 
 ## Resources:
+
+### Virtual try-on
 1. Example guide: https://www.youtube.com/watch?v=C94pTaKoLbU
 
 2. Possible model for virtual try-on: https://github.com/levihsu/OOTDiffusion
@@ -18,3 +20,11 @@ and post-processing methods are required for addressing such problems."
 3. Lightweight version possible model to deploy ( <= 8GB VRAM required): https://github.com/Zheng-Chong/CatVTON
 
 4. Simple guide to build a Full-stack Generative AI App: https://xiaolishen.medium.com/a-fullstack-text-to-image-generative-ai-app-you-can-build-in-an-afternoon-31990657344b
+
+### Recommendation system:
+1. Basic guide: https://www.geeksforgeeks.org/what-are-recommender-systems/
+2. Recommendation system design:
+- https://www.youtube.com/watch?v=lh9CNRDqKBk&t=1s
+- https://www.youtube.com/watch?v=FoSCaue3lcg
+- (Short) Architectural Patterns: https://www.youtube.com/shorts/nZuWCo52wTg
+  
