@@ -20,8 +20,8 @@ and post-processing methods are required for addressing such problems."
 3. Lightweight version possible model to deploy ( <= 8GB VRAM required): https://github.com/Zheng-Chong/CatVTON
 * Test on RTX 3060 Mobile 6GB VRAM:
 - GPU Memory Usage:
-+ Load model only: 3320MiB
-+ During inference: 5020MiB
+Load model only: 3320MiB
+During inference: 5020MiB
 - Processing Time: approximately 1 minute
 
 5. Simple guide to build a Full-stack Generative AI App: https://xiaolishen.medium.com/a-fullstack-text-to-image-generative-ai-app-you-can-build-in-an-afternoon-31990657344b
