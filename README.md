@@ -28,6 +28,7 @@ and post-processing methods are required for addressing such problems."
     + Load model only: 3466MiB
     + During inference: 8366MiB
   - Processing Time: 30s
+
 **Note:** Processing time can be changed by changing inference step. Those numbers above are for the default setting (50 inference step). For example, if reduce the inference step to 20, the processing time on RTX 3090 is only 10s
 
 5. Simple guide to build a Full-stack Generative AI App: https://xiaolishen.medium.com/a-fullstack-text-to-image-generative-ai-app-you-can-build-in-an-afternoon-31990657344b
