@@ -1,3 +1,9 @@
+conda create -n catvton python=3.9
+conda activate catvton
+pip install -e .
+
+
+
 # Clothes-Virtual-Try-On
 
 ## Resources:

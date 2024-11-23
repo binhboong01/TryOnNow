@@ -1,0 +1,100 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+*.env
+.venv/
+env/
+ENV/
+
+# Installers
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+wheels/
+
+# Distribution / Packaging
+*.manifest
+*.spec
+
+# Logs and debug files
+*.log
+*.pot
+*.pid
+*.gz
+*.out
+*.cover
+*.nox/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# mypy type checker cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Profiling data
+*.prof
+*.dat
+*.pstat
+
+# Static analysis tools
+.pylint.d/
+*.pylintrc
+.pyre/
+.safety/
+
+# Editor and IDE specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Temporary files
+*.bak
+*.swp
+*.tmp
+*.temp
+*.~*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AWS and cloud-specific files
+*.aws-sam/
+*.terraform/
+
+# Python-specific package managers
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# Docker and container tools
+*.dockerfile
+.dockerignore
+.env.docker
+
+# Ignore local configuration
+*.local_settings
