@@ -1,9 +1,44 @@
-conda create -n catvton python=3.9
-conda activate catvton
-pip install -e .
+# Catvton Setup and Usage Guide
+
+This README provides simple steps to set up and run the **Catvton** application, which includes both a backend API and a frontend UI.
+
+## Setup Instructions
+
+1. Create and activate a Python environment:
+   ```bash
+   conda create -n catvton python=3.9
+   conda activate catvton
+   ```
+
+2. Install the package in editable mode:
+   ```bash
+   git clone https://github.com/binhboong01/Clothes-Virtual-Try-On.git
+   cd Clothes-Virtual-Try-On.git
+   pip install -e .
+   ```
+
+## Running the Application
+
+1. Open **two terminals**:
+   
+   - **Terminal 1**: Start the backend API:
+     ```bash
+     python catvton/api.py
+     ```
+
+   - **Terminal 2**: Launch the frontend UI:
+     ```bash
+     python catvton/demo_ui.py
+     ```
 
 
+## API Spec and information
+... [To be Updated from server]
 
+
+---
+---
+---
 # Clothes-Virtual-Try-On
 
 ## Resources:

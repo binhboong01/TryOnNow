@@ -62,7 +62,8 @@ async def inference(
     target_width: int=768,
     target_height: int=1024
 ):
-
+    import torch
+    
     MAX_IMAGES = 10
     person_images_paths = person_files[:MAX_IMAGES]
     cloth_images_paths = cloth_files[:MAX_IMAGES]
@@ -89,55 +90,68 @@ async def inference(
         cloth_batch = [item[1] for item in batch]
         mask_batch = [item[2] for item in batch]
 
-        # Convert images and masks to tensors
-        person_tensors = ImageProcessor.images_to_tensor(person_batch).to(pipeline.device)
-        cloth_tensors = ImageProcessor.images_to_tensor(cloth_batch).to(pipeline.device)
-        mask_tensors = ImageProcessor.images_to_tensor(mask_batch).to(pipeline.device)
+        try:
+            # Convert images and masks to tensors
+            person_tensors = ImageProcessor.images_to_tensor(person_batch).to(pipeline.device)
+            cloth_tensors = ImageProcessor.images_to_tensor(cloth_batch).to(pipeline.device)
+            mask_tensors = ImageProcessor.images_to_tensor(mask_batch).to(pipeline.device)
 
-        print(f'person shape: {person_tensors.shape}')
-        print(f'cloth shape: {cloth_tensors.shape}')
-        print(f'mask shape: {mask_tensors.shape}')
+            print(f'person shape: {person_tensors.shape}')
+            print(f'cloth shape: {cloth_tensors.shape}')
+            print(f'mask shape: {mask_tensors.shape}')
 
-        # Set random seed
-        generator = None
-        if seed != -1:
-            generator = torch.Generator(device='cuda').manual_seed(seed)
+            # Set random seed
+            generator = None
+            if seed != -1:
+                generator = torch.Generator(device='cuda').manual_seed(seed)
 
-        # Inference
-        result_images = pipeline(
-            person_tensors,
-            cloth_tensors,
-            mask_tensors,
-            num_inference_steps=num_inference_steps,
-            guidance_scale=guidance_scale,
-            generator=generator
-        )
+            # Inference
+            result_images = pipeline(
+                person_tensors,
+                cloth_tensors,
+                mask_tensors,
+                num_inference_steps=num_inference_steps,
+                guidance_scale=guidance_scale,
+                generator=generator
+            )
 
-        # Post-process results
-        for idx, result_image in enumerate(result_images):
-            person_image = person_batch[idx]
-            cloth_image = cloth_batch[idx]
-            mask = mask_batch[idx]
+            # Move result images to CPU before post-processing
+            result_images = [img.cpu() if torch.is_tensor(img) else img for img in result_images]
 
-            if show_type == "result only":
-                display_image = result_image
-            else:
-                width, height = person_image.size
-                if show_type == "input & result":
-                    condition_width = width // 2
-                    conditions = ImageProcessor.image_grid([person_image, cloth_image], 2, 1)
+            # Post-process results
+            for idx, result_image in enumerate(result_images):
+                person_image = person_batch[idx]
+                cloth_image = cloth_batch[idx]
+                mask = mask_batch[idx]
+
+                if show_type == "result only":
+                    display_image = result_image
                 else:
-                    masked_person = vis_mask(person_image, mask)
-                    condition_width = width // 3
-                    conditions = ImageProcessor.image_grid([person_image, masked_person , cloth_image], 3, 1)
-                conditions = conditions.resize((condition_width, height), Image.NEAREST)
-                new_result_image = Image.new("RGB", (width + condition_width + 5, height))
-                new_result_image.paste(conditions, (0, 0))
-                new_result_image.paste(result_image, (condition_width + 5, 0))
-                display_image = new_result_image
+                    width, height = person_image.size
+                    if show_type == "input & result":
+                        condition_width = width // 2
+                        conditions = ImageProcessor.image_grid([person_image, cloth_image], 2, 1)
+                    else:
+                        masked_person = vis_mask(person_image, mask)
+                        condition_width = width // 3
+                        conditions = ImageProcessor.image_grid([person_image, masked_person, cloth_image], 3, 1)
+                    conditions = conditions.resize((condition_width, height), Image.NEAREST)
+                    new_result_image = Image.new("RGB", (width + condition_width + 5, height))
+                    new_result_image.paste(conditions, (0, 0))
+                    new_result_image.paste(result_image, (condition_width + 5, 0))
+                    display_image = new_result_image
 
-            # Append result
-            results.append(display_image)
+                # Append result
+                results.append(display_image)
+
+        finally:
+            # Explicitly clear tensors from GPU memory
+            del person_tensors
+            del cloth_tensors
+            del mask_tensors
+            if 'result_images' in locals():
+                del result_images
+            torch.cuda.empty_cache()  # Clear CUDA cache
 
     return results
 
