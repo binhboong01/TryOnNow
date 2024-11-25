@@ -1,3 +1,83 @@
+# Catvton Setup and Usage Guide
+
+This README provides simple steps to set up and run the **Catvton** application, which includes both a backend API and a frontend UI.
+
+## Features
+- Accepts images of persons and clothing.
+- Supports different clothing types (upper, lower, overall).
+- Allows configuration of inference steps, guidance scale, and image dimensions.
+
+## Setup Instructions
+
+1. Create and activate a Python environment:
+   ```bash
+   conda create -n catvton python=3.9
+   conda activate catvton
+   ```
+
+2. Install the package in editable mode:
+   ```bash
+   git clone https://github.com/binhboong01/Clothes-Virtual-Try-On.git
+   cd Clothes-Virtual-Try-On.git
+   pip install -e .
+   ```
+
+## Running the Application
+
+1. Open **two terminals**:
+   
+   - **Terminal 1**: Start the backend API:
+     ```bash
+     python catvton/api.py
+     ```
+
+   - **Terminal 2**: Launch the frontend UI:
+     ```bash
+     python catvton/demo_ui.py
+     ```
+
+
+## API Documentation
+Once the server starts, it will be accessible at `http://127.0.0.1:8000`.
+
+FastAPI automatically generates interactive API documentation:
+- **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+## API Usage
+
+### Endpoint
+- **URL**: `POST http://127.0.0.1:8000/infer`
+- **Request Body**:
+  ```json
+  {
+      "person_files": ["/path/to/person1.jpg", "/path/to/person2.jpg"],
+      "cloth_files": ["/path/to/cloth1.jpg", "/path/to/cloth2.jpg"],
+      "cloth_type": "upper",
+      "num_inference_steps": 10,
+      "guidance_scale": 2.5,
+      "seed": 42,
+      "show_type": "input & mask & result",
+      "batch_size": 4,
+      "target_width": 768,
+      "target_height": 1024
+  }
+  ```
+
+### Example Request with Python
+
+Experiment with [`catvton/notebooks/call_api.ipynb`](catvton/notebooks/call_api.ipynb)
+Run the client script:
+```bash
+python catvton/inference.py
+```
+
+---
+---
+---
+---
+---
+---
 # Clothes-Virtual-Try-On
 
 ## Resources:
