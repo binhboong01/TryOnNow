@@ -26,7 +26,7 @@ def submit_function(
     target_height
 ):
     
-    root_path = os.path.join(os.getcwd(), "resource/demo/example")
+    root_path = os.path.join(os.getcwd(), "catvton/resource/demo/example")
     # Combine uploaded and selected person images
     person_files = person_files or []
     print(person_files)
@@ -197,7 +197,7 @@ def app_gradio():
         result_gallery = gr.Gallery(label="Results", columns=3, height='auto')
         with gr.Row():
             # Photo Examples
-            root_path = "resource/demo/example"
+            root_path = os.path.join(os.getcwd(), "catvton/resource/demo/example")
             with gr.Column():
                 # Person Examples Gallery
                 person_example_paths = [
