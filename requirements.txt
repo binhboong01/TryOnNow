@@ -1,0 +1,14 @@
+###### Requirements without Version Specifiers ######`
+# tensorflow
+# cv2
+opencv-python
+matplotlib
+numpy
+# colorsys
+# PIL
+Pillow
+scipy
+webcolors==1.11.1
+PyQt5
+keras<3.0.0
+tensorflow<2.14
